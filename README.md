@@ -1,2 +1,2 @@
 # Typos
-share typos.
+share typos
