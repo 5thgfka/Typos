@@ -7,8 +7,7 @@ Created on 2015-08-04
 from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseServerError, HttpResponseForbidden, HttpResponseNotAllowed
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from product.models import *
-from article.models import *
+from typos.models import *
 
 def home(request):
     template_var = {}
