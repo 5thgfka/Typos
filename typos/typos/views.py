@@ -26,3 +26,8 @@ def contact(request):
     template_var = {}
     return render_to_response("contacts.html",template_var, context_instance=RequestContext(request))
 
+
+def submit_typos(request):
+    template_var = {}
+
+    return HttpResponse(template_var)
