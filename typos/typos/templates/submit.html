@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}提交{% endblock %}
-
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">首页</a></li>
+  <li class="active"><a href="/submit">提交别字</a></li>
+  <li><a href="/rank">榜单</a></li>
+  <li><a href="/notice">公告</a></li>
+</ul>
+{% endblock %}
 {% block main %}
 <form class="form-horizontal">
+{% csrf_token %}
   <div class="form-group">
     <label for="corpName" class="col-sm-2 control-label">公司名称</label>
     <div class="col-sm-10">

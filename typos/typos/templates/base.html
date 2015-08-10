@@ -54,12 +54,8 @@
           <a class="navbar-brand" href="#">TYPOS</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
-            <li><a href="/submit">提交别字</a></li>
-            <li><a href="/rank">榜单</a></li>
-            <li><a href="/notice">公告</a></li>
-          </ul>
+          {% block navbar %}
+          {% endblock %}
           {% block auth %}
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/login">登录</a></li>
