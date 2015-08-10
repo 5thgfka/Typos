@@ -12,6 +12,7 @@ site_media = os.path.join(os.path.dirname(__file__), 'static')
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'typos.views.home', name='home'),
+    url(r'^submit/$', 'typos.views.submit_typos', name='submit_typos'),
     url(r'^contacts/$', 'typos.views.contact', name='contact'),
     # contact
     # Uncomment the next line to enable the admin:

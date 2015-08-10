@@ -28,6 +28,9 @@ def contact(request):
 
 
 def submit_typos(request):
+    
     template_var = {}
-
-    return HttpResponse(template_var)
+    if request.method.upper() == 'GET':
+        return render_to_response("submit.html",template_var, context_instance=RequestContext(request))
+    else:
+        return HttpResponse(template_var)

@@ -1,14 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  	<title>首页</title>
-  	<meta charset="utf-8">
-    <meta name="description" content="Your description">
-    <meta name="keywords" content="Your keywords">
-    <meta name="author" content="Your name">
+{% extends "base.html" %}
 
-</head>
-<body>
-123
-</body>
-</html>
+{% block title %}TYPOS首页{% endblock %}
+
+{% block main %}
+    <div class="jumbotron" style="background-color: #fff;">
+      <h3 id="tables-responsive"><a class="anchorjs-link " href="#tables-responsive" aria-label="Anchor link for: tables responsive" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>最新提交</h3>
+      <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>提交日期</th>
+                <td>所在句子</td>
+                <th>状态</th>
+                <th>提交人</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核中</td>
+                <td>ekse</td>
+              </tr>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核中</td>
+                <td>ekse</td>
+              </tr>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核通过</td>
+                <td>ekse</td>
+              </tr>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核通过</td>
+                <td>ekse</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <h3 id="tables-responsive"><a class="anchorjs-link " href="#tables-responsive" aria-label="Anchor link for: tables responsive" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>最新确认</h3>
+      <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>提交日期</th>
+                <td>所在句子</td>
+                <th>状态</th>
+                <th>提交人</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核中</td>
+                <td>ekse</td>
+              </tr>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核中</td>
+                <td>ekse</td>
+              </tr>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核通过</td>
+                <td>ekse</td>
+              </tr>
+              <tr>
+                <td>2015-08-10</td>
+                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
+                <td>审核通过</td>
+                <td>ekse</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+    {% endblock %}
