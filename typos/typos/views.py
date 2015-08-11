@@ -28,9 +28,19 @@ def contact(request):
 
 
 def submit_typos(request):
-    
+
     template_var = {}
     if request.method.upper() == 'GET':
         return render_to_response("submit.html",template_var, context_instance=RequestContext(request))
     else:
+        #corpName = request.POST['corpName']
+        #webName = request.POST['webName']
+        #link = request.POST['link']
+        #inWord = request.POST['inWord']
+        #inCentence = request.POST['inCentence']
+        #correctWord = request.POST['correctWord']
+
+        print request
+
+        #print corpName, webName, link, inWord, inCentence, correctWord
         return HttpResponse(template_var)

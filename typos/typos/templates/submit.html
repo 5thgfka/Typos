@@ -10,7 +10,7 @@
 </ul>
 {% endblock %}
 {% block main %}
-<form class="form-horizontal">
+<form class="form-horizontal" action="/submit/" method="post">
 {% csrf_token %}
   <div class="form-group">
     <label for="corpName" class="col-sm-2 control-label">公司名称</label>
@@ -52,7 +52,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">提交</button>
+      <button type="submit" class="btn btn-default" >提交</button>
     </div>
   </div>
 </form>
