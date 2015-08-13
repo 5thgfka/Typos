@@ -10,16 +10,17 @@ from django.template import RequestContext
 from typos.models import *
 
 import hashlib
+import datetime
 
 def home(request):
     template_var = {}
-    # products
-    #product_list = Product.objects.all()[:4]
-    # news
-    #news_list = Article.objects.order_by('publish_date')[:10]
+    # new
+    typos_list_new = Typos.objects.all()[:6]
+    # confirm
+    typos_list_confirm = Typos.objects.filter(status = 1)
     
-    #template_var['news_list'] = news_list
-    #template_var['product_list'] = product_list
+    template_var['typos_list_confirm'] = typos_list_confirm
+    template_var['typos_list_new'] = typos_list_new
     
     return render_to_response("index.html",template_var, context_instance=RequestContext(request))
 
@@ -36,17 +37,31 @@ def submit_typos(request):
         return render_to_response("submit.html",template_var, context_instance=RequestContext(request))
     else:
         corpName = request.POST['corpName']
-        webName = request.POST['webName']
         link = request.POST['link']
         inWord = request.POST['inWord']
         inCentence = request.POST['inCentence']
         correctWord = request.POST['correctWord']
         # convert to md5
-        typos_hash = hashlib.md5(inCentence).hexdigest()
-        print typos_hash
-        print request.user
+        typos_hash = hashlib.md5(inCentence.encode('utf-8')).hexdigest()
         status = 0
+        typos = Typos()
+        # 
+        if not request.user.is_authenticated():
+            publisher = User.objects.get(id=1)
+        else:
+            publisher = request.user
+        corp = Corp.objects.get(name = corpName)
 
-        print corpName, webName, link, inWord, inCentence, correctWord
+        typos.phrases = inWord
+        typos.sentence = inCentence
+        typos.correct_phrases = correctWord
+        typos.url = link
+        typos.publisher = publisher
+        typos.typos_hash = typos_hash
+        typos.status = status
+        typos.belongto = corp
+        typos.submit_time = "%s" % datetime.date.today()
+
+        typos.save()
 
         return HttpResponse(template_var)

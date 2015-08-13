@@ -16,37 +16,23 @@
         <table class="table">
             <thead>
               <tr>
-                <th>提交日期</th>
+                <td>提交日期</td>
                 <td>所在句子</td>
-                <th>状态</th>
+                <td>hash</td>
+                <td>状态</td>
                 <th>提交人</th>
               </tr>
             </thead>
             <tbody>
+              {% for typo in typos_list_new %}
               <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核中</td>
-                <td>ekse</td>
+                <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
+                <td>{{ typo.sentence }}</td>
+                <td>{{ typo.typos_hash }}</td>
+                <td>{{ typo.status }}</td>
+                <td>{{ typo.publisher }}</td>
               </tr>
-              <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核中</td>
-                <td>ekse</td>
-              </tr>
-              <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核通过</td>
-                <td>ekse</td>
-              </tr>
-              <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核通过</td>
-                <td>ekse</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
       </div>
@@ -55,37 +41,23 @@
         <table class="table">
             <thead>
               <tr>
-                <th>提交日期</th>
+                <td>提交日期</td>
                 <td>所在句子</td>
-                <th>状态</th>
+                <td>hash</td>
+                <td>状态</td>
                 <th>提交人</th>
               </tr>
             </thead>
             <tbody>
+              {% for typo in typos_list_confirm %}
               <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核中</td>
-                <td>ekse</td>
+                <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
+                <td>{{ typo.sentence }}</td>
+                <td>{{ typo.typos_hash }}</td>
+                <td>{{ typo.status }}</td>
+                <td>{{ typo.publisher }}</td>
               </tr>
-              <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核中</td>
-                <td>ekse</td>
-              </tr>
-              <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核通过</td>
-                <td>ekse</td>
-              </tr>
-              <tr>
-                <td>2015-08-10</td>
-                <td>普通应用下的暗涌-几款通用型应用的SSRF漏洞利用及分析以及某大厂坑到自己记录</td>
-                <td>审核通过</td>
-                <td>ekse</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
       </div>
