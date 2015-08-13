@@ -9,6 +9,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from typos.models import *
 
+import hashlib
+
 def home(request):
     template_var = {}
     # products
@@ -33,14 +35,18 @@ def submit_typos(request):
     if request.method.upper() == 'GET':
         return render_to_response("submit.html",template_var, context_instance=RequestContext(request))
     else:
-        #corpName = request.POST['corpName']
-        #webName = request.POST['webName']
-        #link = request.POST['link']
-        #inWord = request.POST['inWord']
-        #inCentence = request.POST['inCentence']
-        #correctWord = request.POST['correctWord']
+        corpName = request.POST['corpName']
+        webName = request.POST['webName']
+        link = request.POST['link']
+        inWord = request.POST['inWord']
+        inCentence = request.POST['inCentence']
+        correctWord = request.POST['correctWord']
+        # convert to md5
+        typos_hash = hashlib.md5(inCentence).hexdigest()
+        print typos_hash
+        print request.user
+        status = 0
 
-        print request
+        print corpName, webName, link, inWord, inCentence, correctWord
 
-        #print corpName, webName, link, inWord, inCentence, correctWord
         return HttpResponse(template_var)
