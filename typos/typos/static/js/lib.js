@@ -18,7 +18,8 @@ function submit_new() {
         },
         dataType: 'json',   //WebService 会返回Json类型
         success: function(result) {     //回调函数，result，返回值
-    		
+    		alert('提交成功!');
+            window.location.href = '\\';
         }
 	});
 }

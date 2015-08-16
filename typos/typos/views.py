@@ -7,6 +7,7 @@ Created on 2015-08-04
 from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseServerError, HttpResponseForbidden, HttpResponseNotAllowed
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils import simplejson 
 from typos.models import *
 
 import hashlib
@@ -63,5 +64,6 @@ def submit_typos(request):
         typos.submit_time = "%s" % datetime.date.today()
 
         typos.save()
-
-        return HttpResponse(template_var)
+        template_var["status"] = "success"
+        
+        return HttpResponse(simplejson.dumps(template_var, ensure_ascii = False), content_type="application/json")

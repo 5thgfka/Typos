@@ -27,10 +27,14 @@
               {% for typo in typos_list_new %}
               <tr>
                 <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
-                <td>{{ typo.sentence }}</td>
+                <td><a href="typos/{{typo.id}}">{{ typo.sentence }}</a></td>
                 <td>{{ typo.typos_hash }}</td>
-                <td>{{ typo.status }}</td>
-                <td>{{ typo.publisher }}</td>
+                <td>
+                    {% if typo.status == '0' %}
+                        已提交
+                    {% endif %}
+                </td>
+                <td><a href="user/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
               </tr>
               {% endfor %}
             </tbody>
