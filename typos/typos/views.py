@@ -67,3 +67,20 @@ def submit_typos(request):
         template_var["status"] = "success"
         
         return HttpResponse(simplejson.dumps(template_var, ensure_ascii = False), content_type="application/json")
+
+
+def typo(request, typoid):
+    template_var = {}
+
+    typo = Typos.objects.get(id = typoid)
+
+    template_var['phrases'] = typo.phrases
+    template_var['sentence'] = typo.sentence
+    template_var['error_url'] = typo.url
+    template_var['submit_time'] = typo.submit_time
+    template_var['publisher'] = typo.publisher
+    template_var['audit_time'] = typo.audit_time
+    template_var['typos_hash'] = typo.typos_hash
+    template_var['status'] = typo.status
+
+    return render_to_response("typo.html",template_var, context_instance=RequestContext(request))

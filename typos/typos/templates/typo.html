@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ phrases }}{% endblock %}
+
+{% block head %}
+<link href="/static/css/docs.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">首页</a></li>
+  <li><a href="/submit">提交别字</a></li>
+  <li><a href="/rank">榜单</a></li>
+  <li><a href="/notice">公告</a></li>
+</ul>
+{% endblock %}
+{% block main %}
+<div class="bs-callout bs-callout-info" id="callout-type-b-i-elems">
+  <h2>别字概要</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>所在词组：</td><td>{{ phrases }}</td>
+      </tr>
+      <tr>
+        <td>所在句子：</td><td>{{ sentence }}</td>
+      </tr>
+      <tr>
+        <td>链接：</td><td>{{ error_url }}</td>
+      </tr>
+      <tr>
+        <td>提交人：</td><td>{{ publisher }}</td>
+      </tr>
+      <tr>
+        <td>提交时间：</td><td>{{ submit_time|date:"Y-m-d" }}</td>
+      </tr>
+      <tr>
+        <td>句子HASH：</td><td>{{ typos_hash }}</td>
+      </tr>
+      <tr>
+        <td>状态</td><td>{{ status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

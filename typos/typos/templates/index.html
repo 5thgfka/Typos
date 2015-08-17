@@ -20,14 +20,14 @@
                 <td>所在句子</td>
                 <td>hash</td>
                 <td>状态</td>
-                <th>提交人</th>
+                <td>提交人</td>
               </tr>
             </thead>
             <tbody>
               {% for typo in typos_list_new %}
               <tr>
                 <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
-                <td><a href="typos/{{typo.id}}">{{ typo.sentence }}</a></td>
+                <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
                 <td>{{ typo.typos_hash }}</td>
                 <td>
                     {% if typo.status == '0' %}
@@ -49,7 +49,7 @@
                 <td>所在句子</td>
                 <td>hash</td>
                 <td>状态</td>
-                <th>提交人</th>
+                <td>提交人</td>
               </tr>
             </thead>
             <tbody>
