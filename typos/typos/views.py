@@ -16,9 +16,9 @@ import datetime
 def home(request):
     template_var = {}
     # new
-    typos_list_new = Typos.objects.all()[:6]
+    typos_list_new = Typos.objects.filter(status = 0)[:6]
     # confirm
-    typos_list_confirm = Typos.objects.filter(status = 1)
+    typos_list_confirm = Typos.objects.filter(status = 1)[:6]
     
     template_var['typos_list_confirm'] = typos_list_confirm
     template_var['typos_list_new'] = typos_list_new

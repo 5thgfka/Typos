@@ -38,7 +38,14 @@
         <td>句子HASH：</td><td>{{ typos_hash }}</td>
       </tr>
       <tr>
-        <td>状态</td><td>{{ status }}</td>
+        <td>状态</td>
+        <td>
+          {% if status == '1' %}
+            已确认
+          {% else %}
+            已提交
+          {% endif %}
+        </td>
       </tr>
     </tbody>
   </table>
