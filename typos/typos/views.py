@@ -84,3 +84,8 @@ def typo(request, typoid):
     template_var['status'] = typo.status
 
     return render_to_response("typo.html",template_var, context_instance=RequestContext(request))
+
+def user(request, userid):
+    template_var = {}
+
+    return render_to_response("index.html",template_var, context_instance=RequestContext(request))
