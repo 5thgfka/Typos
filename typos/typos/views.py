@@ -87,5 +87,11 @@ def typo(request, typoid):
 
 def user(request, userid):
     template_var = {}
+    
+    typos = Typos.objects.filter(publisher = userid)
+    userObj = User.objects.get(id = userid)
 
-    return render_to_response("index.html",template_var, context_instance=RequestContext(request))
+    name = userObj.username
+
+    template_var['name'] = name
+    return render_to_response("user.html",template_var, context_instance=RequestContext(request))
