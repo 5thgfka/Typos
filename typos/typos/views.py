@@ -94,4 +94,15 @@ def user(request, userid):
     name = userObj.username
 
     template_var['name'] = name
+
+    typos_0 = [typo for typo in typos if typo.status == '0']
+    typos_1 = [typo for typo in typos if typo.status == '1']
+
+    typos_0_count = len(typos_0)
+    typos_1_count = len(typos_1)
+
+    template_var['unConfirmed'] = typos_0_count
+    template_var['confirmed'] = typos_1_count
+    template_var['typos'] = typos
+    
     return render_to_response("user.html",template_var, context_instance=RequestContext(request))
