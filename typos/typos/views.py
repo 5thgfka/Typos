@@ -103,6 +103,8 @@ def user(request, userid):
 
     template_var['unConfirmed'] = typos_0_count
     template_var['confirmed'] = typos_1_count
-    template_var['typos'] = typos
+
+    template_var['typos_0'] = typos_0
+    template_var['typos_1'] = typos_1
     
     return render_to_response("user.html",template_var, context_instance=RequestContext(request))

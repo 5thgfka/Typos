@@ -17,16 +17,17 @@
 {% block main %}
 <div class="bs-callout bs-callout-info" id="callout-type-b-i-elems">
   <h2>用户信息</h2>
-</div>
-<span>
+  <span>
   <span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 24px;color:green;"></span>
   <span class="glyphicon-class">已确认{{confirmed}}</span>
 &nbsp;&nbsp;&nbsp;&nbsp;
   <span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 24px;color:red;"></span>
   <span class="glyphicon-class">未处理{{unConfirmed}}</span>
 </span>
+</div>
+
 <br />
-<br />
+<h3>已确认</h3>
 <table class="table">
   <thead>
     <tr>
@@ -38,7 +39,35 @@
     </tr>
   </thead>
   <tbody>
-    {% for typo in typos %}
+    {% for typo in typos_1 %}
+    <tr>
+      <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
+      <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
+      <td>{{ typo.typos_hash }}</td>
+      <td>
+          {% if typo.status == '1' %}
+              已确认
+          {% endif %}
+      </td>
+      <td><a href="user/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br />
+<h3>未处理</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td>提交日期</td>
+      <td>所在句子</td>
+      <td>hash</td>
+      <td>状态</td>
+      <td>提交人</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for typo in typos_0 %}
     <tr>
       <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
       <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
