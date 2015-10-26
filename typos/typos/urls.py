@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'typo/(?P<typoid>.*)$', 'typos.views.typo', name='typo'),
     # user
     url(r'user/(?P<userid>.*)$', 'typos.views.user', name='user'),
+    # accounts
+    url(r'^accounts/login/$', 'accounts.helper.login', name='login'),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media}),
