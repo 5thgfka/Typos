@@ -58,9 +58,14 @@
           {% endblock %}
           {% block auth %}
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/accounts/login">登录</a></li>
-            <!--<li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>-->
-            <li><a href="/register">注册</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="user/{{user.id}}">{{ user.username }}</a></li>
+              <li><a href="/accounts/logout">退出</a></li>
+            {% else %}
+              <li><a href="/accounts/login">登录</a></li>
+              <!--<li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>-->
+              <li><a href="/accounts/register">注册</a></li>
+            {% endif %}
           </ul>
           {% endblock %}
         </div><!--/.nav-collapse -->
