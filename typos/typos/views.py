@@ -37,6 +37,14 @@ def submit_typos(request):
     if request.method.upper() == 'GET':
         return render_to_response("submit.html",template_var, context_instance=RequestContext(request))
     else:
+
+        checkcode_correct = request.session['checkcode']
+        checkcode_input = request.POST['checkCode']
+        # checkcode verify
+        if checkcode_input != checkcode_correct:
+            template_var['status'] = 'fail'
+            return HttpResponse(simplejson.dumps(template_var, ensure_ascii = False), content_type="application/json")
+        
         corpName = request.POST['corpName']
         link = request.POST['link']
         inWord = request.POST['inWord']
@@ -108,3 +116,25 @@ def user(request, userid):
     template_var['typos_1'] = typos_1
     
     return render_to_response("user.html",template_var, context_instance=RequestContext(request))
+
+def getcci(request):
+    import Image, ImageDraw, ImageFont, random, cStringIO, os
+    image = os.getcwd()+"/typos/static/images/black.png"
+    im = Image.open(image)
+    draw = ImageDraw.Draw(im)
+    mp = hashlib.md5()
+    mp_src = mp.update(str(datetime.datetime.now()))
+    mp_src = mp.hexdigest()
+    rand_str = mp_src[0:4]
+
+    draw.text((10,10), rand_str[0])
+    draw.text((48,10), rand_str[1])
+    draw.text((85,10), rand_str[2])
+    draw.text((120,10), rand_str[3])
+    del draw
+    request.session['checkcode'] = rand_str
+
+    buf = cStringIO.StringIO()
+    im.save(buf, 'png')
+    return HttpResponse(buf.getvalue(),'image/png')
+

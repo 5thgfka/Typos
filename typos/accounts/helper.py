@@ -66,9 +66,11 @@ def register(request):
         if form.is_valid():
             email = form.cleaned_data["email"]
             applyDate = "%s" % datetime.date.today()
+            # why use 2012-02-04, because my wife and I became we.
             replyDate = '2012-02-04'
             tempAp = Apply.objects.filter(email = email)
             # 如果已经申请就不保存了
+            # @TODO: if applied before, give an alert.
             if len(tempAp) > 0:
                 return HttpResponseRedirect("/")
 

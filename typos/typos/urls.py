@@ -25,4 +25,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media}),
+    # check code
+    url(r'^get_check_code_image/$', 'typos.views.getcci', name="getcci"),
 )

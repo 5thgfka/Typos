@@ -4,6 +4,7 @@ function submit_new() {
 	var inWord = $("#inWord").val();
 	var inCentence = $("#inCentence").val();
 	var correctWord = $("#correctWord").val();
+    var checkCode = $("#checkCode").val();
 	var corpName = $("#corpName option:selected").val();
 	
 	$.ajax({
@@ -14,12 +15,18 @@ function submit_new() {
         	inWord: inWord,
         	inCentence: inCentence,
         	correctWord: correctWord,
-        	corpName: corpName
+        	corpName: corpName,
+            checkCode: checkCode
         },
         dataType: 'json',   //WebService 会返回Json类型
         success: function(result) {     //回调函数，result，返回值
-    		alert('提交成功!');
-            window.location.href = '\\';
+            if(result.status == 'fail') {
+                alert("验证码错误");
+            }
+            else {
+                alert('提交成功!');
+                window.location.href = '\\';
+            }
         }
 	});
 }
