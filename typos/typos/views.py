@@ -119,7 +119,8 @@ def user(request, userid):
     return render_to_response("user.html",template_var, context_instance=RequestContext(request))
 
 def getcci(request):
-    import Image, ImageDraw, ImageFont, random, cStringIO, os
+    from PIL import Image, ImageDraw
+    import random, cStringIO, os
     image = os.getcwd()+"/typos/static/images/black.png"
     im = Image.open(image)
     draw = ImageDraw.Draw(im)
