@@ -9,6 +9,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import simplejson 
 from typos.models import *
+from django.contrib.auth.decorators import login_required
 
 import hashlib
 import datetime
@@ -30,7 +31,7 @@ def contact(request):
     template_var = {}
     return render_to_response("contacts.html",template_var, context_instance=RequestContext(request))
 
-
+@login_required
 def submit_typos(request):
 
     template_var = {}
