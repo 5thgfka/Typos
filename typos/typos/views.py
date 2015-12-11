@@ -152,10 +152,14 @@ def rank(request):
         psList.append(td)
 
     template_var['ps'] = psList
-    
+
     return render_to_response("rank.html", template_var, context_instance=RequestContext(request))
 
 
+def notice(request):
+    template_var = {}
+
+    return render_to_response("notice.html", template_var, context_instance=RequestContext(request))
 
 def getcci(request):
     from PIL import Image, ImageDraw
