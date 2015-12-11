@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'typo/(?P<typoid>.*)$', 'typos.views.typo', name='typo'),
     # user
     url(r'user/(?P<userid>.*)$', 'typos.views.user', name='user'),
+    # rank
+    url(r'rank/$', 'typos.views.rank', name='rank'),
     # accounts
     url(r'^accounts/login/$', 'accounts.helper.login', name='login'),
     url(r'^accounts/logout/$', 'accounts.helper.logout', name='logout'),

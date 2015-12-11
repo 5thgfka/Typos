@@ -118,6 +118,45 @@ def user(request, userid):
     
     return render_to_response("user.html",template_var, context_instance=RequestContext(request))
 
+def rank(request):
+    from django.db import connection,transaction
+    template_var = {}
+    cursor = connection.cursor()
+    # belongto section
+    belongtoRaw = 'select typos.*, corp.name from (select belongto_id as bid, count(1) as ct from typos_typos group by bid) as typos join typos_corp as corp on typos.bid = corp.id order by ct desc'
+    cursor.execute(belongtoRaw)
+    btrs = cursor.fetchall()
+    btrsList = []
+    
+    for btr in btrs:
+        td = {}
+        td['bid'] = btr[0]
+        td['ct'] = btr[1]
+        td['name'] = btr[2]
+
+        btrsList.append(td)
+
+    template_var['btrs'] = btrsList
+    # company section
+    publisherRaw = 'select typos.*, au.username from (select publisher_id as pid, count(1) as ct from typos_typos group by pid) as typos join auth_user as au on typos.pid = au.id order by ct desc'
+    cursor.execute(publisherRaw)
+    ps = cursor.fetchall()
+    psList = []
+    
+    for p in ps:
+        td = {}
+        td['pid'] = p[0]
+        td['ct'] = p[1]
+        td['name'] = p[2]
+
+        psList.append(td)
+
+    template_var['ps'] = psList
+    
+    return render_to_response("rank.html", template_var, context_instance=RequestContext(request))
+
+
+
 def getcci(request):
     from PIL import Image, ImageDraw
     import random, cStringIO, os

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}TYPOS首页{% endblock %}
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">首页</a></li>
+  <li><a href="/submit">提交别字</a></li>
+  <li class="active"><a href="/rank">榜单</a></li>
+  <li><a href="/notice">公告</a></li>
+</ul>
+{% endblock %}
+{% block main %}
+    <div class="jumbotron" style="background-color: #fff;">
+      <h3 id="tables-responsive"><a class="anchorjs-link " href="#tables-responsive" aria-label="Anchor link for: tables responsive" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>用户排行</h3>
+      <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <td>提交人</td>
+                <td>别字数量</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in ps %}
+              <tr>
+                <td><a href="user/{{p.bid}}">{{ p.name }}</a></td>
+                <td>{{p.ct}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+      <h3 id="tables-responsive"><a class="anchorjs-link " href="#tables-responsive" aria-label="Anchor link for: tables responsive" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>企业排行</h3>
+      <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <td>企业</td>
+                <td>提交数量</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for btr in btrs %}
+              <tr>
+                <td>{{ btr.name }}</td>
+                <td>{{ btr.ct }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+    </div>
+    {% endblock %}
