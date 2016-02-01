@@ -8,11 +8,21 @@ class Corp(models.Model):
 	name = models.CharField(max_length = 20, null=True, verbose_name = "公司")
 
 class Typos(models.Model):
+	'''
+	v1:
+	@summary:
+		1.belongto为外键关联Corp
+	v2:
+	@date:2016-02-01
+	@summary:
+		1.修改belongto为CharField
+	'''
 	phrases = models.CharField(max_length = 20, null=True, verbose_name = "所在词组")
 	sentence = models.CharField(max_length = 1000, null=True, verbose_name = "所在句子")
 	correct_phrases = models.CharField(max_length = 1000, null=True, verbose_name = "正确词组")
 	url = models.CharField(max_length = 100, verbose_name = "链接")
-	belongto = models.ForeignKey(Corp, verbose_name = "公司")
+	#belongto = models.ForeignKey(Corp, verbose_name = "公司")
+	belongto = models.CharField(max_length = 100, verbose_name = "公司")
 	submit_time = models.DateField(verbose_name = "提交时间")
 	publisher = models.ForeignKey(User, verbose_name = "提交人")
 	audit_time = models.DateField(verbose_name = "审核时间", null=True)

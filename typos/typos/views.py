@@ -10,6 +10,7 @@ from django.template import RequestContext
 from django.utils import simplejson 
 from typos.models import *
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 import hashlib
 import datetime
@@ -60,7 +61,13 @@ def submit_typos(request):
             publisher = User.objects.get(id=1)
         else:
             publisher = request.user
-        corp = Corp.objects.get(name = corpName)
+        
+        try:
+            corp = Corp.objects.get(name = corpName)
+        except ObjectDoesNotExist:
+            corp = Corp()
+            corp.name = corpName
+            corp.save()
 
         typos.phrases = inWord
         typos.sentence = inCentence
@@ -69,7 +76,7 @@ def submit_typos(request):
         typos.publisher = publisher
         typos.typos_hash = typos_hash
         typos.status = status
-        typos.belongto = corp
+        typos.belongto = corpName
         typos.submit_time = "%s" % datetime.date.today()
 
         typos.save()
@@ -123,16 +130,16 @@ def rank(request):
     template_var = {}
     cursor = connection.cursor()
     # belongto section
-    belongtoRaw = 'select typos.*, corp.name from (select belongto_id as bid, count(1) as ct from typos_typos group by bid) as typos join typos_corp as corp on typos.bid = corp.id order by ct desc'
+    # belongtoRaw = 'select typos.*, corp.name from (select belongto_id as bid, count(1) as ct from typos_typos group by bid) as typos join typos_corp as corp on typos.bid = corp.id order by ct desc'
+    belongtoRaw = 'select belongto_id name, count(1) as ct from typos_typos group by name desc'
     cursor.execute(belongtoRaw)
     btrs = cursor.fetchall()
     btrsList = []
     
     for btr in btrs:
         td = {}
-        td['bid'] = btr[0]
-        td['ct'] = btr[1]
-        td['name'] = btr[2]
+        td['name'] = btr[1]
+        td['ct'] = btr[2]
 
         btrsList.append(td)
 
