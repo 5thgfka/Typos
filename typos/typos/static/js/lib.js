@@ -5,7 +5,7 @@ function submit_new() {
 	var inCentence = $("#inCentence").val();
 	var correctWord = $("#correctWord").val();
     var checkCode = $("#checkCode").val();
-	var corpName = $("#corpName option:selected").val();
+	var corpName = $("#corpName").val();
 	
 	$.ajax({
         type: "POST",   //访问WebService使用Post方式请求
