@@ -200,8 +200,20 @@ def getcci(request):
 # 1. earthquake
 
 def getRecent100Quake(request):
+    template_var = {'results':[]}
+    
     link = 'http://www.csndmc.ac.cn/newweb/qq_events/index.html'
     linkPointer = urllib2.urlopen(link)
-
+    
     contents = linkPointer.read()
     soup = BeautifulSoup(contents)
+    tables = soup.find_all('table')
+    trs = tables[3].findAll('tr')
+    for i in range(1, len(trs)):
+        tds = trs[i].findAll('td')
+        tdList = []
+        for j in range(1, len(tds)):
+            tdList.append(tds[j].string)
+        template_var['results'].append(tdList)
+    
+    return HttpResponse(simplejson.dumps(template_var,ensure_ascii = False), content_type="application/json")
