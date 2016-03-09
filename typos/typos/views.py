@@ -15,6 +15,10 @@ from django.core.exceptions import ObjectDoesNotExist
 import hashlib
 import datetime
 
+import urllib2
+import re
+from bs4 import BeautifulSoup
+
 def home(request):
     template_var = {}
     # new
@@ -190,3 +194,14 @@ def getcci(request):
     im.save(buf, 'png')
     return HttpResponse(buf.getvalue(),'image/png')
 
+
+
+# Other APIs
+# 1. earthquake
+
+def getRecent100Quake(request):
+    link = 'http://www.csndmc.ac.cn/newweb/qq_events/index.html'
+    linkPointer = urllib2.urlopen(link)
+
+    contents = linkPointer.read()
+    soup = BeautifulSoup(contents)
