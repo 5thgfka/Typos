@@ -15,6 +15,10 @@ from django.core.exceptions import ObjectDoesNotExist
 import hashlib
 import datetime
 
+import urllib2
+import re
+from bs4 import BeautifulSoup
+
 def home(request):
     template_var = {}
     # new
@@ -190,3 +194,29 @@ def getcci(request):
     im.save(buf, 'png')
     return HttpResponse(buf.getvalue(),'image/png')
 
+# for other app or web.
+# 1. earthquake
+
+def getEarth(request):
+    template_var = []
+
+    link = "http://www.csndmc.ac.cn/newweb/qq_events/index.html"
+    linkPointer = urllib2.urlopen(link)
+
+    contents = linkPointer.read()
+    soup = BeautifulSoup(contents)
+
+    tables = soup.find_all('table')
+    infoTable = tables[3]
+    trs = infoTable.findAll('tr')
+
+    for i in range(1, len(trs)):
+        tds = trs[i].findAll('td')
+        quake = []
+        for j in range(1, len(tds)):
+            quake.append(tds[j].string)
+        template_var.append(quake)
+
+    return HttpResponse(simplejson.dumps(template_var, ensure_ascii = False), content_type="application/json")
+
+    
