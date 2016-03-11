@@ -200,6 +200,8 @@ def getcci(request):
 def getEarth(request):
     template_var = []
 
+    callback = request.GET['callbackparam']
+
     link = "http://www.csndmc.ac.cn/newweb/qq_events/index.html"
     linkPointer = urllib2.urlopen(link)
 
@@ -214,9 +216,10 @@ def getEarth(request):
         tds = trs[i].findAll('td')
         quake = []
         for j in range(1, len(tds)):
-            quake.append(tds[j].string)
+            quake.append(tds[j].string.encode('raw_unicode_escape'))
         template_var.append(quake)
-
-    return HttpResponse(simplejson.dumps(template_var, ensure_ascii = False), content_type="application/json")
+    retstring = "%s(%s)"%(callback,str(template_var))
+    
+    return HttpResponse(retstring)
 
     
