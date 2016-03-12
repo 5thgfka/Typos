@@ -135,15 +135,15 @@ def rank(request):
     cursor = connection.cursor()
     # belongto section
     # belongtoRaw = 'select typos.*, corp.name from (select belongto_id as bid, count(1) as ct from typos_typos group by bid) as typos join typos_corp as corp on typos.bid = corp.id order by ct desc'
-    belongtoRaw = 'select belongto_id name, count(1) as ct from typos_typos group by name desc'
+    belongtoRaw = 'select belongto name, count(1) as ct from typos_typos group by name desc'
     cursor.execute(belongtoRaw)
     btrs = cursor.fetchall()
     btrsList = []
     
     for btr in btrs:
         td = {}
-        td['name'] = btr[1]
-        td['ct'] = btr[2]
+        td['name'] = btr[0]
+        td['ct'] = btr[1]
 
         btrsList.append(td)
 
@@ -199,9 +199,6 @@ def getcci(request):
 
 def getEarth(request):
     template_var = []
-
-    callback = request.GET['callbackparam']
-
     link = "http://www.csndmc.ac.cn/newweb/qq_events/index.html"
     linkPointer = urllib2.urlopen(link)
 
@@ -216,10 +213,9 @@ def getEarth(request):
         tds = trs[i].findAll('td')
         quake = []
         for j in range(1, len(tds)):
-            quake.append(tds[j].string.encode('raw_unicode_escape'))
+            quake.append(tds[j].string)
         template_var.append(quake)
-    retstring = "%s(%s)"%(callback,str(template_var))
     
-    return HttpResponse(retstring)
+    return HttpResponse(simplejson.dumps(template_var, ensure_ascii = False), content_type="application/json")
 
     
