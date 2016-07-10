@@ -1,2 +1,6 @@
 # Typos
-share typos
+
+Submit typos 
+&
+Share typos
+
