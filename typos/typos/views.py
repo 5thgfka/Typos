@@ -22,9 +22,9 @@ from bs4 import BeautifulSoup
 def home(request):
     template_var = {}
     # new
-    typos_list_new = Typos.objects.filter(status = 0)[:6]
+    typos_list_new = Typos.objects.filter(status = 0)[:10]
     # confirm
-    typos_list_confirm = Typos.objects.filter(status = 1)[:6]
+    typos_list_confirm = Typos.objects.filter(status = 1)[:10]
     
     template_var['typos_list_confirm'] = typos_list_confirm
     template_var['typos_list_new'] = typos_list_new
