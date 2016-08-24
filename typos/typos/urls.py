@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     # contact
     url(r'typo/(?P<typoid>.*)$', 'typos.views.typo', name='typo'),
     # user
-    url(r'user/(?P<userid>.*)$', 'typos.views.user', name='user'),
+    url(r'userStatics/(?P<userid>.*)$', 'typos.views.userStatics', name='userStatics'),
     # rank
     url(r'rank/$', 'typos.views.rank', name='rank'),
     # notice

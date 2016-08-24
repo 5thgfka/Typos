@@ -105,7 +105,7 @@ def typo(request, typoid):
 
     return render_to_response("typo.html",template_var, context_instance=RequestContext(request))
 
-def user(request, userid):
+def userStatics(request, userid):
     template_var = {}
     
     typos = Typos.objects.filter(publisher = userid)
