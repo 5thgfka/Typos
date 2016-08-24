@@ -2,7 +2,7 @@
 import os
 from os import environ    
 debug = not environ.get("APP_NAME", "")   
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
