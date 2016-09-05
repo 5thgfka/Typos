@@ -22,12 +22,12 @@ from bs4 import BeautifulSoup
 def home(request):
     template_var = {}
     # new
-    typos_list_new = Typos.objects.filter(status = 1)[:10]
+    typos_list_comfirmed = Typos.objects.filter(status = 1)[:10]
     # confirm
-    typos_list_confirm = Typos.objects.filter(status = 2)[:10]
+    typos_list_modified = Typos.objects.filter(status = 2)[:10]
     
-    template_var['typos_list_confirm'] = typos_list_confirm
-    template_var['typos_list_new'] = typos_list_new
+    template_var['typos_list_modified'] = typos_list_modified
+    template_var['typos_list_comfirmed'] = typos_list_comfirmed
     
     return render_to_response("index.html",template_var, context_instance=RequestContext(request))
 

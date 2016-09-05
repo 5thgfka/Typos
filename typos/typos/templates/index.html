@@ -25,7 +25,7 @@
               </tr>
             </thead>
             <tbody>
-              {% for typo in typos_list_new %}
+              {% for typo in typos_list_comfirmed %}
               <tr>
                 <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
                 <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
@@ -33,7 +33,7 @@
                 <td>{{ typo.belongto }}</td>
                 <td>
                     {% if typo.status == '0' %}
-                        已提交
+                        已确认
                     {% endif %}
                 </td>
                 <td><a href="user/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
@@ -42,7 +42,7 @@
             </tbody>
           </table>
       </div>
-      <h3 id="tables-responsive"><a class="anchorjs-link " href="#tables-responsive" aria-label="Anchor link for: tables responsive" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>最新确认</h3>
+      <h3 id="tables-responsive"><a class="anchorjs-link " href="#tables-responsive" aria-label="Anchor link for: tables responsive" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant: normal; font-weight: normal; position: absolute; margin-left: -1em; padding-right: 0.5em;"></a>已修改</h3>
       <div class="table-responsive">
         <table class="table">
             <thead>
@@ -56,15 +56,15 @@
               </tr>
             </thead>
             <tbody>
-              {% for typo in typos_list_confirm %}
+              {% for typo in typos_list_modified %}
               <tr>
                 <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
                 <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
                 <td>{{ typo.typos_hash }}</td>
                 <td>{{ typo.belongto }}</td>
                 <td>
-                    {% if typo.status == '1' %}
-                        已确认
+                    {% if typo.status == '2' %}
+                        已修改
                     {% endif %}
                 </td>
                 <td><a href="user/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
