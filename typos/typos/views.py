@@ -22,9 +22,9 @@ from bs4 import BeautifulSoup
 def home(request):
     template_var = {}
     # new
-    typos_list_comfirmed = Typos.objects.filter(status = 1)[:10]
+    typos_list_comfirmed = Typos.objects.filter(status = 2)[:10]
     # confirm
-    typos_list_modified = Typos.objects.filter(status = 2)[:10]
+    typos_list_modified = Typos.objects.filter(status = 3)[:10]
     
     template_var['typos_list_modified'] = typos_list_modified
     template_var['typos_list_comfirmed'] = typos_list_comfirmed
@@ -115,17 +115,25 @@ def userStatics(request, userid):
 
     template_var['name'] = name
 
-    typos_0 = [typo for typo in typos if typo.status == '0']
-    typos_1 = [typo for typo in typos if typo.status == '1']
+    typos_ing = [typo for typo in typos if typo.status == '0']
+    typos_fail = [typo for typo in typos if typo.status == '1']
+    typos_pass = [typo for typo in typos if typo.status == '2']
+    typos_modified = [typo for typo in typos if typo.status == '3']
 
-    typos_0_count = len(typos_0)
-    typos_1_count = len(typos_1)
+    typos_ing_count = len(typos_ing)
+    typos_fail_count = len(typos_fail)
+    typos_pass_count = len(typos_pass)
+    typos_modified_count = len(typos_modified)
 
-    template_var['unConfirmed'] = typos_0_count
-    template_var['confirmed'] = typos_1_count
+    template_var['typos_ing_count'] = typos_ing_count
+    template_var['typos_fail_count'] = typos_fail_count
+    template_var['typos_pass_count'] = typos_pass_count
+    template_var['typos_modified_count'] = typos_modified_count
 
-    template_var['typos_0'] = typos_0
-    template_var['typos_1'] = typos_1
+    template_var['typos_ing'] = typos_ing
+    template_var['typos_fail'] = typos_fail
+    template_var['typos_pass'] = typos_pass
+    template_var['typos_modified'] = typos_modified
     
     return render_to_response("user.html",template_var, context_instance=RequestContext(request))
 

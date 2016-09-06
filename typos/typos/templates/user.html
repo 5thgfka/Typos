@@ -19,15 +19,15 @@
   <h2>用户信息</h2>
   <span>
   <span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 24px;color:green;"></span>
-  <span class="glyphicon-class">已确认{{confirmed}}</span>
+  <span class="glyphicon-class">已修改&nbsp;{{typos_modified_count}}</span>
 &nbsp;&nbsp;&nbsp;&nbsp;
   <span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size: 24px;color:red;"></span>
-  <span class="glyphicon-class">未处理{{unConfirmed}}</span>
+  <span class="glyphicon-class">未处理&nbsp;{{typos_pass_count}}</span>
 </span>
 </div>
 
 <br />
-<h3>已确认</h3>
+<h3>已修改</h3>
 <table class="table">
   <thead>
     <tr>
@@ -39,14 +39,14 @@
     </tr>
   </thead>
   <tbody>
-    {% for typo in typos_1 %}
+    {% for typo in typos_modified %}
     <tr>
       <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
       <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
       <td>{{ typo.typos_hash }}</td>
       <td>
-          {% if typo.status == '1' %}
-              已确认
+          {% if typo.status == '3' %}
+              已修改
           {% endif %}
       </td>
       <td><a href="userStatics/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
@@ -67,14 +67,70 @@
     </tr>
   </thead>
   <tbody>
-    {% for typo in typos_0 %}
+    {% for typo in typos_pass %}
+    <tr>
+      <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
+      <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
+      <td>{{ typo.typos_hash }}</td>
+      <td>
+          {% if typo.status == '2' %}
+              已确认
+          {% endif %}
+      </td>
+      <td><a href="userStatics/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br />
+<h3>审核失败</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td>提交日期</td>
+      <td>所在句子</td>
+      <td>hash</td>
+      <td>状态</td>
+      <td>提交人</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for typo in typos_fail %}
     <tr>
       <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
       <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
       <td>{{ typo.typos_hash }}</td>
       <td>
           {% if typo.status == '1' %}
-              已确认
+              审核失败
+          {% endif %}
+      </td>
+      <td><a href="userStatics/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br />
+<h3>审核中</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td>提交日期</td>
+      <td>所在句子</td>
+      <td>hash</td>
+      <td>状态</td>
+      <td>提交人</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for typo in typos_ing %}
+    <tr>
+      <td>{{ typo.submit_time|date:"Y-m-d" }}</td>
+      <td><a href="typo/{{typo.id}}">{{ typo.sentence }}</a></td>
+      <td>{{ typo.typos_hash }}</td>
+      <td>
+          {% if typo.status == '0' %}
+              审核中
           {% endif %}
       </td>
       <td><a href="userStatics/{{typo.publisher.id}}">{{ typo.publisher }}</a></td>
