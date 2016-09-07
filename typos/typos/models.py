@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 
 class Corp(models.Model):
 	name = models.CharField(max_length = 20, null=True, verbose_name = "公司")
+	
+	def __unicode__(self):
+		return self.name
+
+	class Meta:
+		verbose_name = "公司名称"
+		verbose_name_plural = "公司名称"
 
 class Typos(models.Model):
 	'''
@@ -29,10 +36,24 @@ class Typos(models.Model):
 	typos_hash = models.CharField(max_length = 1000, null=True, verbose_name = "句子HASH")
 	status = models.CharField(max_length = 10, verbose_name="状态")
 
+	def __unicode__(self):
+		return self.phrases
+
+	class Meta:
+		verbose_name = "别字"
+		verbose_name_plural = "别字"
+
 class Apply(models.Model):
 	email = models.CharField(max_length = 40, verbose_name = "email")
 	applyDate = models.DateField(verbose_name = "申请日期")
 	replyDate = models.DateField(verbose_name = "反馈日期")
+
+	def __unicode__(self):
+		return self.email
+
+	class Meta:
+		verbose_name = "用户申请"
+		verbose_name_plural = "用户申请"
 
 admin.site.register(Corp)
 admin.site.register(Typos)
