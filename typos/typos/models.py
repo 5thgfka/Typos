@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*-
 
 from django.db import models
-from django.contrib import admin
 from django.contrib.auth.models import User
 
 class Corp(models.Model):
@@ -54,8 +53,4 @@ class Apply(models.Model):
 	class Meta:
 		verbose_name = "用户申请"
 		verbose_name_plural = "用户申请"
-
-admin.site.register(Corp)
-admin.site.register(Typos)
-admin.site.register(Apply)
 

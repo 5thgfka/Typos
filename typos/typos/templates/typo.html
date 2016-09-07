@@ -40,10 +40,20 @@
       <tr>
         <td>状态</td>
         <td>
+          {% if status == '0' %}
+            审核中
+          {% endif %}
+
           {% if status == '1' %}
+            审核失败
+          {% endif %}
+
+          {% if status == '2' %}
             已确认
-          {% else %}
-            已提交
+          {% endif %}
+
+          {% if status == '3' %}
+            已修改
           {% endif %}
         </td>
       </tr>
