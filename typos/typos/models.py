@@ -54,3 +54,5 @@ class Apply(models.Model):
 		verbose_name = "用户申请"
 		verbose_name_plural = "用户申请"
 
+class Test(models.Model):
+	published = models.BooleanField(default=False)
